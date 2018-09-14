@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <gradient
+                    android:startColor="@color/seekBarProgress"
+                    android:endColor="@color/seekBarProgress"
+                    android:angle="270"
+                    />
+            </shape>
+        </clip>
+    </item>
+
+    <item android:id="@android:id/secondaryProgress">
+        <clip>
+            <shape>
+                <gradient
+                    android:startColor="@color/seekBarSecondaryProgress"
+                    android:endColor="@color/seekBarSecondaryProgress"
+                    android:angle="270"/>
+            </shape>
+        </clip>
+    </item>
+
+
+</selector>

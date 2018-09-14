@@ -4,11 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context=".MainActivity">
 
+    <RelativeLayout
+        android:id="@+id/relativeLayout_video_player"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/black"
+        android:gravity="center_horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout_controller"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <SurfaceView
+            android:id="@+id/surfaceView_video_player"
+            android:layout_width="match_parent"
+            android:layout_height="250dp" />
+
+    </RelativeLayout>
+
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout_controller"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:background="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -19,10 +42,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
+            android:text="00:00"
             android:textColor="@android:color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="00:00" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView_total_time"
@@ -30,19 +53,23 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="8dp"
+            android:text="00:00"
             android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="03:29" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <SeekBar
             android:id="@+id/seekBar_video_progress"
+            style="@style/CustomSeekBarStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:progress="20"
+            android:secondaryProgress="75"
+            android:thumb="@android:drawable/radiobutton_off_background"
             app:layout_constraintBottom_toBottomOf="@+id/textView_current_time"
             app:layout_constraintEnd_toStartOf="@+id/textView_total_time"
             app:layout_constraintStart_toEndOf="@+id/textView_current_time"
@@ -61,7 +88,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/seekBar_video_progress"
-            app:srcCompat="@drawable/ic_play_arrow_black_24dp" />
+            app:srcCompat="@drawable/ic_pause_black_24dp" />
 
         <ImageButton
             android:id="@+id/imageButton_rewind"
@@ -115,5 +142,8 @@
             app:layout_constraintTop_toTopOf="@+id/imageButton_forward"
             app:srcCompat="@drawable/ic_fullscreen_black_24dp" />
     </android.support.constraint.ConstraintLayout>
+
+
+
 
 </android.support.constraint.ConstraintLayout>
