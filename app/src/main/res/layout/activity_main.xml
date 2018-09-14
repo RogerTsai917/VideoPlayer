@@ -67,8 +67,6 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:progress="20"
-            android:secondaryProgress="75"
             android:thumb="@android:drawable/radiobutton_off_background"
             app:layout_constraintBottom_toBottomOf="@+id/textView_current_time"
             app:layout_constraintEnd_toStartOf="@+id/textView_total_time"

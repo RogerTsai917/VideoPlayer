@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         setStatusBar();
 
         mVideoPlayerRelativeLayout = findViewById(R.id.relativeLayout_video_player);
@@ -228,12 +227,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onBufferingUpdate(MediaPlayer mp, int percent) {
                 Log.d(TAG, "onBufferingUpdate: " + percent);
-                int secondaryProgress;
-                if (percent == 0) {
-                    secondaryProgress = 0;
-                } else {
-                    secondaryProgress = mVideoMaxTime * percent / 100;
-                }
+                int secondaryProgress = mVideoMaxTime * percent / 100;
                 mVideoProgressSeekBar.setSecondaryProgress(secondaryProgress);
             }
         });
@@ -270,11 +264,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int mediaWidth = mMediaPlayer.getVideoWidth();
         int mediaHeight = mMediaPlayer.getVideoHeight();
 
-
         float media = mediaWidth * 1.0f / mediaHeight;
 
         RelativeLayout.LayoutParams layoutParamsSv;
-
 
         if (area > media) {
             int svWidth = (int) (height * media);
@@ -307,10 +299,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void changeOrientation() {
         if (Configuration.ORIENTATION_LANDSCAPE == this.getResources()
                 .getConfiguration().orientation) {
+            // 回到直向
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+            
             mFullscreenButton.setImageDrawable(getDrawable(R.drawable.ic_fullscreen_black_24dp));
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             mControllerHandler.removeCallbacks(controllerRunnable);
         } else {
+            // 回到橫向
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
             mFullscreenButton.setImageDrawable(getDrawable(R.drawable.ic_fullscreen_exit_black_24dp));
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
             mControllerHandler.postDelayed(controllerRunnable, mControllerDisappearTime);
@@ -409,7 +409,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (hours > 0) {
             finalTimerString = hours + ":";
         }
-
         // Prepending 0 to seconds if it is one digit
         if (seconds < 10) {
             secondsString = "0" + seconds;
